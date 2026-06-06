@@ -16,25 +16,47 @@ export const AviatorLogo: React.FC<AviatorLogoProps> = ({
   size = "md",
   pulse = false,
 }) => {
-  const sizeClasses = {
-    sm: "w-16 h-12",
-    md: "w-32 h-20",
-    lg: "w-48 h-32",
-    xl: "w-64 h-40",
+  const containerSizes = {
+    sm: "w-28",
+    md: "w-48",
+    lg: "w-64",
+    xl: "w-80",
+  };
+
+  const svgSizes = {
+    sm: "h-14",
+    md: "h-24",
+    lg: "h-32",
+    xl: "h-40",
+  };
+
+  const textSizes = {
+    sm: "text-lg tracking-wide",
+    md: "text-3xl tracking-widest",
+    lg: "text-4xl tracking-widest",
+    xl: "text-5xl tracking-widest",
+  };
+
+  const barHeight = {
+    sm: "h-[2px]",
+    md: "h-[3px]",
+    lg: "h-[4px]",
+    xl: "h-[5px]",
   };
 
   return (
     <div
       id="aviator-logo-container"
-      className={`relative flex items-center justify-center ${sizeClasses[size]} ${
+      className={`flex flex-col items-center justify-center text-center ${containerSizes[size]} ${
         pulse ? "animate-pulse" : ""
       } ${className}`}
     >
+      {/* Plane SVG */}
       <svg
         viewBox="0 0 120 60"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full drop-shadow-[0_0_12px_rgba(239,68,68,0.7)]"
+        className={`w-full ${svgSizes[size]} drop-shadow-[0_0_12px_rgba(239,68,68,0.7)]`}
       >
         {/* Propeller spinner line */}
         <path
@@ -138,6 +160,20 @@ export const AviatorLogo: React.FC<AviatorLogoProps> = ({
           strokeDasharray="3 3"
         />
       </svg>
+
+      {/* Stylized display branding */}
+      <div 
+        className={`text-[#ef4444] font-black italic select-none uppercase ${textSizes[size]} drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]`}
+        style={{ fontFamily: "'Comfortaa', 'Outfit', 'Inter', sans-serif" }}
+      >
+        Aviator
+      </div>
+
+      {/* Triple Underlines / Double Underlines matching exactly requested format */}
+      <div className="flex flex-col items-center space-y-1 w-full mt-1">
+        <div className={`bg-[#ef4444] rounded-full w-[40%] ${barHeight[size]} shadow-[0_0_6px_rgba(239,68,68,0.4)]`}></div>
+        <div className={`bg-[#ef4444] rounded-full w-[20%] ${barHeight[size]} shadow-[0_0_6px_rgba(239,68,68,0.4)]`}></div>
+      </div>
     </div>
   );
 };

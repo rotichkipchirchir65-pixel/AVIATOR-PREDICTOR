@@ -30,7 +30,10 @@ export const PredictorWorkspace: React.FC<PredictorWorkspaceProps> = ({
   const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
 
   // Redirection Link
-  const whatsappUrl = "https://wa.me/254739320033?text=hello%20yobby%20am%20here%20for%20a%20voucher%20code";
+  const messageText = `╔══════════════════════╗
+║ ⚡ HELLO YOBBY AM HERE FOR AVIATOR PREDATOR VOUCHER CODE ║
+╚══════════════════════╝`;
+  const whatsappUrl = `https://wa.me/254739320033?text=${encodeURIComponent(messageText)}`;
 
   // Handle Voucher Submission
   const handleVoucherSubmit = (e: React.FormEvent) => {
@@ -259,7 +262,7 @@ export const PredictorWorkspace: React.FC<PredictorWorkspaceProps> = ({
 
             {/* Custom note to provide nice instructions */}
             <div className="text-[10px] text-gray-400 text-center font-mono leading-relaxed max-w-xs border-t border-neutral-900 pt-4">
-              V12.0.5 SECURE ENGINE • LICENSE ACTIVE
+              AVIATOR PREDICTOR PRO v12.0.5 SECURE ENGINE • LICENSE ACTIVE
             </div>
 
           </div>

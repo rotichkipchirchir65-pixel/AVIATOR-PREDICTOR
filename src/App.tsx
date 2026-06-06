@@ -153,8 +153,8 @@ export default function App() {
       {screen === "LOGIN" && (
         <div id="login-view" className="flex flex-col min-h-screen justify-between bg-black relative">
           <header className="bg-red-600 w-full py-4 text-center sticky top-0 z-10 border-b border-red-700 shadow-md">
-            <span className="text-white font-extrabold tracking-widest text-lg font-mono leading-none">
-              v12.0.5 AUTH
+            <span className="text-white font-extrabold tracking-widest text-xs md:text-sm font-mono leading-none uppercase">
+              AVIATOR PREDICTOR PRO v12.0.5 AUTH
             </span>
           </header>
 
@@ -239,8 +239,8 @@ export default function App() {
         <div id="splash-view" className="flex flex-col min-h-screen justify-between bg-black relative">
           
           <header className="bg-red-600 w-full py-4 text-center sticky top-0 z-10 border-b border-red-700 shadow-md">
-            <span className="text-white font-extrabold tracking-widest text-lg font-mono leading-none">
-              v12.0.5
+            <span className="text-white font-extrabold tracking-widest text-xs md:text-sm font-mono leading-none uppercase">
+              AVIATOR PREDICTOR PRO v12.0.5
             </span>
           </header>
 
@@ -298,8 +298,8 @@ export default function App() {
           </header>
 
           <main className="flex-1 max-w-md mx-auto px-4 py-8 flex flex-col items-center justify-center z-10 w-full">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#ef4444] italic font-serif tracking-tight text-center drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] mb-6 select-none leading-none">
-              Aviator Predictor v12.0.5
+            <h2 className="text-xl md:text-2xl font-black text-[#ef4444] uppercase tracking-wider text-center drop-shadow-[0_0_10px_rgba(239,68,68,0.3)] mb-6 select-none leading-none">
+              AVIATOR PREDICTOR PRO v12.0.5
             </h2>
 
             <BettingSiteGrid onSelect={handleSiteSelection} />
@@ -310,7 +310,7 @@ export default function App() {
           </main>
 
           <footer className="w-full bg-red-600 py-3 px-4 text-center text-black font-semibold text-xs font-mono uppercase tracking-wide shadow-inner border-t border-red-700">
-            Original Predictor License Secured • v12.0.5
+            Original Predictor License Secured • AVIATOR PREDICTOR PRO v12.0.5
           </footer>
         </div>
       )}
@@ -326,8 +326,8 @@ export default function App() {
           </header>
 
           <main className="flex-1 flex flex-col items-center justify-center px-6 max-w-md mx-auto py-10 w-full">
-            <h2 className="text-xl md:text-2xl font-black text-[#ef4444] uppercase tracking-normal text-center mb-1 font-mono leading-none">
-              AVIATOR PREDICTOR v12.0.5
+            <h2 className="text-xl md:text-2xl font-black text-[#ef4444] uppercase tracking-wider text-center mb-1 font-mono leading-none">
+              AVIATOR PREDICTOR PRO v12.0.5
             </h2>
             <p className="text-[10px] font-mono text-gray-500 uppercase tracking-widest text-center mb-8">
               {selectedSite.name.toUpperCase()} ACCELERATOR
