@@ -1,0 +1,6 @@
+{
+  "name": "Aviator Predictor",
+  "description": "The original Aviator Predictor v12.0.5 with responsive dual-layout and cross-platform synchronization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
