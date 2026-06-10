@@ -8,7 +8,7 @@ import { AppScreen, BettingSite } from "./types";
 import { AviatorLogo } from "./components/AviatorLogo";
 import { BettingSiteGrid } from "./components/BettingSiteGrid";
 import { PredictorWorkspace } from "./components/PredictorWorkspace";
-import { Loader2, KeyRound, Mail } from "lucide-react";
+import { Loader2, KeyRound, Mail, Share2, CheckCircle2, AlertTriangle } from "lucide-react";
 
 export default function App() {
   // --- CORE APP STATES ---
@@ -24,6 +24,9 @@ export default function App() {
 
   // Voucher validation state (Does NOT persist on refresh or lobby transitions)
   const [hasVerifiedVoucher, setHasVerifiedVoucher] = useState<boolean>(false);
+
+  // Mandatory WhatsApp Share checklist triggers
+  const [hasShared, setHasShared] = useState<boolean>(false);
 
   const handleSetHasVerifiedVoucher = (val: boolean) => {
     setHasVerifiedVoucher(val);
@@ -77,8 +80,8 @@ export default function App() {
     }
 
     setLoginError(null);
-    // Switch to Description/Notice splash page
-    setScreen("SPLASH");
+    // Switch to Mandatory WhatsApp Share barrier page
+    setScreen("SHARE");
 
     // Play authorization tone
     try {
@@ -229,6 +232,126 @@ export default function App() {
           <footer className="py-4 bg-transparent text-center">
             <span className="text-neutral-800 text-[9px] font-mono select-none">
               LICENSE KEY COMPLIANT SECURED SIGN IN
+            </span>
+          </footer>
+        </div>
+      )}
+
+      {/* ----------------- SCREEN SHARE: MANDATORY WHATSAPP SHARE ----------------- */}
+      {screen === "SHARE" && (
+        <div id="share-view" className="flex flex-col min-h-screen justify-between bg-black relative">
+          <header className="bg-red-600 w-full py-4 text-center sticky top-0 z-10 border-b border-red-700 shadow-md">
+            <span className="text-white font-extrabold tracking-widest text-xs md:text-sm font-mono leading-none uppercase">
+              MANDATORY SECURITY GATEWAY - v12.0.5 SHARING REQUIREMENT
+            </span>
+          </header>
+
+          <main className="flex-1 flex flex-col items-center justify-center px-4 max-w-md mx-auto w-full py-6">
+            <AviatorLogo size="md" pulse className="mb-4" />
+
+            <div className="w-full bg-neutral-950 border border-neutral-900 rounded-xl p-5 shadow-2xl flex flex-col space-y-4">
+              
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-1.5 text-yellow-500 font-extrabold text-[11px] uppercase tracking-widest mb-1 animate-pulse">
+                  <AlertTriangle className="w-3.5 h-3.5" />
+                  <span>Activation Pending</span>
+                </div>
+                <h2 className="text-white text-base font-black tracking-tight uppercase">
+                  SHARE TO WHATSAPP
+                </h2>
+                <p className="text-neutral-400 text-[10px] uppercase mt-1 leading-relaxed">
+                  You must share to proceed instantly. If you do not share, your bypass credentials will expire.
+                </p>
+              </div>
+
+              {/* Share Instruction Card */}
+              <div className="bg-red-950/20 border border-red-900/50 rounded-lg p-3.5 flex items-start space-x-2.5">
+                <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5 animate-pulse" />
+                <div className="flex-1">
+                  <span className="text-xs font-black text-red-500 uppercase tracking-wider block">
+                    IMPORTANT DIRECTIONS:
+                  </span>
+                  <p className="text-[10.5px] text-gray-300 mt-1 leading-relaxed font-sans font-medium">
+                    When you are redirected to WhatsApp, <strong className="text-red-400 underline">you must select and share the message to at least 2 Groups or Friends</strong>. After sharing, return immediately to this page to activate your license.
+                  </p>
+                </div>
+              </div>
+
+              {/* Share actions */}
+              <div className="flex flex-col space-y-3">
+                <button
+                  id="btn-share-group-1"
+                  onClick={() => {
+                    const shareMessage = `TO ALL AVIATOR USSERS ! your problem is sorted here😊 do not risk your money anymore 😌 visit our site: https://aviator-predicto-ke.vercel.app/ 🫴 join this group and get your AVIATOR PREDICTOR software: https://chat.whatsapp.com/GBahjTqzBpZI4C0BRQSTbh. 🚀🚀🚀`;
+                    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+                    window.open(whatsappUrl, "_blank");
+                    setHasShared(true);
+                    
+                    // Notification sound cue
+                    try {
+                      const AudioClass = window.AudioContext || (window as any).webkitAudioContext;
+                      if (AudioClass) {
+                        const ctx = new AudioClass();
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.frequency.setValueAtTime(600, ctx.currentTime);
+                        gain.gain.setValueAtTime(0.05, ctx.currentTime);
+                        osc.start();
+                        osc.stop(ctx.currentTime + 0.1);
+                      }
+                    } catch (_) {}
+                  }}
+                  className={`w-full py-4 px-4 rounded-xl font-black text-xs uppercase tracking-widest cursor-pointer duration-200 flex items-center justify-between transition-all ${
+                    hasShared 
+                      ? "bg-neutral-900 border border-neutral-800 text-neutral-400" 
+                      : "bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-emerald-600/20 active:scale-95"
+                  }`}
+                >
+                  <span className="flex items-center space-x-2">
+                    <Share2 className="w-4 h-4" />
+                    <span>SHARE ON WHATSAPP</span>
+                  </span>
+                  {hasShared ? (
+                    <span className="flex items-center space-x-1 text-green-500 text-[10px] font-bold">
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>SHARED</span>
+                    </span>
+                  ) : (
+                    <span className="text-[10px] bg-emerald-700 px-2 py-0.5 rounded text-emerald-100 font-bold">
+                      REQUIRED
+                    </span>
+                  )}
+                </button>
+              </div>
+
+              {/* Master proceed button of the barrier */}
+              <button
+                id="btn-proceed-after-sharing"
+                disabled={!hasShared}
+                onClick={() => {
+                  setScreen("SPLASH");
+                }}
+                className={`w-full py-3 px-4 rounded-xl font-extrabold text-sm uppercase tracking-wider transition duration-200 flex items-center justify-center space-x-2 ${
+                  hasShared
+                    ? "bg-red-600 hover:bg-red-700 text-white cursor-pointer shadow-[0_0_20px_rgba(239,68,68,0.4)] hover:shadow-[0_0_25px_rgba(239,68,68,0.6)] active:scale-95 animate-pulse"
+                    : "bg-neutral-800 text-neutral-500 cursor-not-allowed border border-neutral-700"
+                }`}
+              >
+                {hasShared ? (
+                  <span>🚀 ACTIVATE ENGINE & PROCEED</span>
+                ) : (
+                  <span>❌ COMPLETION REQUIRED TO PROCEED</span>
+                )}
+              </button>
+
+            </div>
+          </main>
+
+          <footer className="py-4 bg-transparent text-center">
+            <span className="text-neutral-900 text-[9px] font-mono select-none block text-center">
+              SECURE DISTRIBUTION RIGHTS VERIFICATION ACTIVE
             </span>
           </footer>
         </div>

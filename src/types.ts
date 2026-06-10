@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export type AppScreen = "LOGIN" | "SPLASH" | "SITE_SELECT" | "PREDICTOR";
+export type AppScreen = "LOGIN" | "SHARE" | "SPLASH" | "SITE_SELECT" | "PREDICTOR";
 
 export interface BettingSite {
   id: string;
